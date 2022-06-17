@@ -47,26 +47,37 @@ namespace VisualNowel
         public Options options;
     }
 
+    public struct BackGround
+    {
+        public string image;
+        public string sound;
+    }
+
     public struct GameData
     {
         public SortedDictionary<string, NPC> characters;
         public SortedDictionary<string, Dialog> dialogs;
+        public SortedDictionary<string, BackGround> backgrounds;
     }
+
 
     public class DialogController
     {
 
         private SortedDictionary<string, NPC> _characters;
         private SortedDictionary<string, Dialog> _dialogs;
+        private SortedDictionary<string, BackGround> _backgrounds;
         private Dialog? _currentDialog = null;
         private int _currentStepIndex = 0;
 
         public SortedDictionary<string, Dialog> Dialogs => _dialogs;
+        public string CurrenntBackGround => _currentDialog?.background;
 
         public DialogController(GameData gameData, string startDialog)
         {
             _characters = gameData.characters;
             _dialogs = gameData.dialogs;
+            _backgrounds = gameData.backgrounds;
             SetNextDialog(startDialog);
         }
 
@@ -98,16 +109,20 @@ namespace VisualNowel
             }
         }
 
-        public string GetBackground()
-        {
-            return _currentDialog?.background;
-        }
-
         public NPC GetNPC(string characterKey)
         {
             if (_characters.TryGetValue(characterKey ?? "", out var character))
             {
                 return character;
+            }
+            return null;
+        }
+
+        public BackGround? GetBackGround(string backGroundKey)
+        {
+            if(_backgrounds.TryGetValue(backGroundKey ?? "", out var backGround))
+            {
+                return backGround;
             }
             return null;
         }

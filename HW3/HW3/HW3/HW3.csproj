@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Audio\hope.mp3" />
+    <None Remove="Assets\backgrounds.json" />
     <None Remove="Assets\Dialogs\dialog1.json" />
     <None Remove="Assets\Dialogs\dialog2.json" />
     <None Remove="Assets\Dialogs\dialog3.json" />
@@ -19,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Audio\hope.mp3" />
+    <EmbeddedResource Include="Assets\Audio\hope.mp3" />
+    <EmbeddedResource Include="Assets\backgrounds.json" />
     <EmbeddedResource Include="Assets\Dialogs\dialog3.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -40,6 +45,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v12.0\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

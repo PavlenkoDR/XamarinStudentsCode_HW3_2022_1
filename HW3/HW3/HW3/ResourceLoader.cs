@@ -12,13 +12,16 @@ namespace VisualNowel
     {
         const string dialogsPath = "HW3.Assets.Dialogs";
         const string profilePath = "HW3.Assets.startProfile.json";
+        const string npcPath = "HW3.Assets.npc.json";
+        const string backgroundsPath = "HW3.Assets.backgrounds.json";
 
         public GameData GetGameData()
         {
             return new GameData()
             {
                 characters = LoadCharacters(),
-                dialogs = LoadDialogs()
+                dialogs = LoadDialogs(),
+                backgrounds = LoadBackGrounds()
             };
         }
 
@@ -48,7 +51,13 @@ namespace VisualNowel
         private SortedDictionary<string, NPC> LoadCharacters()
         {
             return JsonConvert.DeserializeObject<SortedDictionary<string, NPC>>(
-                LoadFile("HW3.Assets.npc.json"));
+                LoadFile(npcPath));
+        }
+
+        private SortedDictionary<string, BackGround> LoadBackGrounds()
+        {
+            return JsonConvert.DeserializeObject<SortedDictionary<string, BackGround>>(
+                LoadFile(backgroundsPath));
         }
 
         private string LoadFile(string filename)

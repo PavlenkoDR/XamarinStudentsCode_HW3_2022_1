@@ -1,0 +1,19 @@
+﻿{
+	"road":
+	{
+		"image": "road",
+		"sound": "hope"
+	},
+
+	"gate":
+	{
+		"image": "gate",
+		"sound": ""
+	},
+
+	"square":
+	{
+		"image": "square",
+		"sound": ""
+	}
+}
