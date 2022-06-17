@@ -1,25 +1,26 @@
-﻿using Android.Media;
+﻿using HW3;
+using System.IO;
+using System.Reflection;
 
 namespace VisualNowel
 {
     public class AudioSource
     {
         const string audioDirectoryPath = "HW3.Assets.Audio";
-
-        private MediaPlayer _player;
-
-        public AudioSource()
-        {
-            _player = new MediaPlayer();
-        }
+        Plugin.SimpleAudioPlayer.ISimpleAudioPlayer player;
 
         public void PlayMP3Audio(string audio)
         {
-            //Now return exception
-            //_player.Reset();
-            //_player.SetDataSource($"{audioDirectoryPath}.{audio}.mp3");
-            //_player.Prepare();
-            //_player.Start();
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            Stream audioStream = assembly.GetManifestResourceStream($"{audioDirectoryPath}.{audio}.mp3");
+
+            player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+            player.Stop();
+            if (audioStream != null)
+            {
+                player.Load(audioStream);
+                player.Play();
+            }
         }
     }
 }

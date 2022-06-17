@@ -38,7 +38,7 @@ namespace HW3
             currentStepText.Text = _controller.CurrentStep()?.text;
             background.Source = _controller.GetBackGround(_controller.CurrenntBackGround).Value.image;
             _audioSource.PlayMP3Audio(_controller.GetBackGround(_controller.CurrenntBackGround).Value.sound);
-
+            
             DrawNPC();
             SetActiveNPC(_controller.CurrentStep()?.npc);
             BindableLayout.SetItemsSource(charactersHolder, _viewDatas);
