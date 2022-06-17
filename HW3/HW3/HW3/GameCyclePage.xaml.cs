@@ -21,6 +21,7 @@ namespace HW3
         }
 
         private DialogController _controller;
+        private AudioSource _audioSource;
         private ResourceLoader _resourceLoader;
         private SaveSystem _saveSystem;
         private ObservableCollection<CharacterViewData> _viewDatas;
@@ -32,9 +33,11 @@ namespace HW3
             _resourceLoader = new ResourceLoader();
             _saveSystem = new SaveSystem(_resourceLoader.GetStartProfile());
             _controller = new DialogController(_resourceLoader.GetGameData(), _saveSystem.GetActive());
-            
+            _audioSource = new AudioSource();
+
             currentStepText.Text = _controller.CurrentStep()?.text;
-            background.Source = _controller.GetBackground();
+            background.Source = _controller.GetBackGround(_controller.CurrenntBackGround).Value.image;
+            _audioSource.PlayMP3Audio(_controller.GetBackGround(_controller.CurrenntBackGround).Value.sound);
 
             DrawNPC();
             SetActiveNPC(_controller.CurrentStep()?.npc);
@@ -72,7 +75,8 @@ namespace HW3
 
             currentStepText.Text = _controller.CurrentStep()?.text;
             BindableLayout.SetItemsSource(optionSelector, null);
-            background.Source = _controller.GetBackground();
+            background.Source = _controller.GetBackGround(_controller.CurrenntBackGround).Value.image;
+            _audioSource.PlayMP3Audio(_controller.GetBackGround(_controller.CurrenntBackGround).Value.sound);
 
             DrawNPC();
             SetActiveNPC(_controller.CurrentStep()?.npc);
